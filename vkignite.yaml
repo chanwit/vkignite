@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+
+  k3s:
+    container_name: k3s
+    hostname: k3s
+    image: chanwit/k3s:06335c49b1-amd64
+    command: [
+        "server", "--disable-agent",
+        "--no-deploy=traefik",
+        "--no-deploy=gloo",
+        "--tls-san=172.17.0.1"
+    ]
+    environment:
+    - K3S_CLUSTER_SECRET=somethingtotallyrandom
+    - K3S_KUBECONFIG_OUTPUT=/output/kubeconfig.yaml
+    - K3S_KUBECONFIG_MODE=666
+    volumes:
+    - k3s-vol:/var/lib/rancher/k3s
+    - .:/output
+    ports:
+    - 6443:6443
+
+  node:
+    restart: always
+    network_mode: "container:k3s"
+    container_name: node
+    image: chanwit/vkignite:v0.1
+    privileged: true
+    volumes:
+    - /dev:/dev
+    - ./kubeconfig.yaml:/kubeconfig.yaml
+    - /var/run/docker.sock:/var/run/docker.sock
+    - /var/lib/firecracker:/var/lib/firecracker
+
+volumes:
+  k3s-vol: {}

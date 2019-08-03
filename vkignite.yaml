@@ -3,13 +3,11 @@ version: '3'
 services:
 
   k3s:
-    container_name: k3s
     hostname: k3s
-    image: chanwit/k3s:06335c49b1-amd64
+    image: rancher/k3s:v0.7.0
     command: [
         "server", "--disable-agent",
         "--no-deploy=traefik",
-        "--no-deploy=gloo",
         "--tls-san=172.17.0.1"
     ]
     environment:
@@ -24,9 +22,8 @@ services:
 
   node:
     restart: always
-    network_mode: "container:k3s"
-    container_name: node
-    image: chanwit/vkignite:v0.1
+    network_mode: "service:k3s"
+    image: chanwit/ignite-kubelet:latest
     privileged: true
     volumes:
     - /dev:/dev

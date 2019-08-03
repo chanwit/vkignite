@@ -12,9 +12,8 @@ Run get nodes and you'll see:
 
 ```
 $ kubectl get nodes
-NAME              STATUS   ROLES    AGE     VERSION
-k3s               Ready    master   6d22h   v1.14.3-k3s.2
-virtual-kubelet   Ready    agent    4d      v1.13.7-vk-v0.11.1-1-gf350cdf9-dev
+NAME     STATUS   ROLES   AGE     VERSION
+ignite   Ready    agent   5h12m   v1.14.3-ignite-f5516fe-dev
 ```
 Then create a VM defined as a Pod inside `pod_ignite.yaml`.
 ```

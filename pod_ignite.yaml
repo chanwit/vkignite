@@ -2,15 +2,23 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: my-vm
+  annotations:
+    ignite.weave.works/vm: |
+      apiVersion: ignite.weave.works/v1alpha1
+      kind: VM
+      metadata:
+        name: {{.POD_NAMESPACE}}__{{.POD_NAME}}
+      spec:
+        image:
+          ociClaim:
+            ref: weaveworks/ignite-ubuntu
+        cpus: 1
+        diskSize: 1GB
+        memory: 800MB
 spec:
   containers:
   - name: rootfs
-    imagePullPolicy: Always
     image: weaveworks/ignite-ubuntu
-    resources:
-      requests:
-        memory: 512M
-        cpu: 1
   dnsPolicy: ClusterFirst
   nodeSelector:
     kubernetes.io/role: agent
@@ -18,4 +26,5 @@ spec:
     type: virtual-kubelet
   tolerations:
   - key: virtual-kubelet.io/provider
-    operator: Exists
+    value: ignite
+    # operator: Exists

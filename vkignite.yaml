@@ -31,5 +31,12 @@ services:
     - /var/run/docker.sock:/var/run/docker.sock
     - /var/lib/firecracker:/var/lib/firecracker
 
+  controller:
+    restart: always
+    network_mode: "service:k3s"
+    image: chanwit/ignite-controller:latest
+    volumes:
+    - ./kubeconfig.yaml:/kubeconfig.yaml
+
 volumes:
   k3s-vol: {}

@@ -51,11 +51,11 @@ $ kubectl apply -f examples/my-vm.yaml
 To see that the VM is already provisioned:
 ```
 $ kubectl get vm,pod
-NAME                                      KERNEL                             IMAGE                             CPUS   MEMORY   SIZE   STATE
-virtualmachine.chanwit.github.com/my-vm   weaveworks/ignite-kernel:4.19.47   weaveworks/ignite-ubuntu:latest   1      512M     1GB    Pending
+NAME                                      CPUS   MEMORY   SIZE   STATE
+virtualmachine.chanwit.github.com/my-vm   1      512M     1GB    Running
 
 NAME        READY   STATUS    RESTARTS   AGE
-pod/my-vm   1/1     Running   0          2m3s
+pod/my-vm   1/1     Running   0          12m
 ```
 
 Then you now will be able to use `sudo ignite ssh default__my-vm` to get into the VM.
@@ -64,5 +64,4 @@ The VM name is in the `{namespace}__{name}` pattern.
 To delete the VM,
 ```
 $ kubectl delete vm my-vm
-$ kubectl delete pod my-vm
 ```

@@ -14,14 +14,6 @@ spec:
       - vm
       - vms
   additionalPrinterColumns:
-    - name: Kernel
-      type: string
-      description: Kernel image name
-      JSONPath: .spec.kernel
-    - name: Image
-      type: string
-      description: RootFS image name
-      JSONPath: .spec.image
     - name: Cpus
       type: integer
       description: CPU
@@ -55,3 +47,5 @@ spec:
               type: string
             diskSize:
               type: string
+            ssh:
+              type: boolean

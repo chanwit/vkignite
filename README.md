@@ -1,5 +1,7 @@
 # vkignite
 
+[![asciicast](https://asciinema.org/a/260804.svg)](https://asciinema.org/a/260804)
+
 ## Prepare K8s
 
 How to run Kubernetes with Ignite support:

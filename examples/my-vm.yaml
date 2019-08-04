@@ -1,0 +1,10 @@
+apiVersion: chanwit.github.com/v1alpha1
+kind: VirtualMachine
+metadata:
+  name: my-vm
+spec:
+  kernel: weaveworks/ignite-kernel:4.19.47
+  image: weaveworks/ignite-ubuntu:latest
+  cpus: 1
+  memory: 512M
+  diskSize: 1GB

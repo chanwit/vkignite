@@ -50,7 +50,7 @@ $ kubectl apply -f examples/my-vm.yaml
 
 To see that the VM is already provisioned:
 ```
-kubectl get vm,pod
+$ kubectl get vm,pod
 NAME                                      KERNEL                             IMAGE                             CPUS   MEMORY   SIZE   STATE
 virtualmachine.chanwit.github.com/my-vm   weaveworks/ignite-kernel:4.19.47   weaveworks/ignite-ubuntu:latest   1      512M     1GB    Pending
 

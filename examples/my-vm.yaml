@@ -8,3 +8,4 @@ spec:
   cpus: 1
   memory: 512M
   diskSize: 1GB
+  ssh: true
